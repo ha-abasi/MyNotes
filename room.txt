@@ -3,12 +3,33 @@ ROOM
 
 
 
+
 >Install :
+
+
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	>> Enable KSP Plugin :
+	>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+	>build.gradle.kt [Module]:
+
+		plugins {
+			id("com.google.devtools.ksp") version "2.0.21-1.0.27" apply false
+		}
+
+	>build.gradle.kt [App]:
+
+		plugins {
+			id("com.google.devtools.ksp")
+		}
+
+
+
 
 	>build.gradle.kt [App]:
 
 		dependencies {
-		
+
     		val room_version = "2.6.1"	
 
     		// base :
@@ -22,3 +43,25 @@ ROOM
 
 
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
