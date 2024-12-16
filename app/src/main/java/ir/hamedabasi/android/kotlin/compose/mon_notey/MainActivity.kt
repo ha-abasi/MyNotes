@@ -43,13 +43,10 @@ class MainActivity : ComponentActivity() {
 
         /*
             Inserting Dummy Data :
-         */
 
-        try {
             vm.insert(Note(100, "Take SHAYAN to the school", "You need to take our son to his school !", "#EF12EF".toColorInt()))
             vm.insert(Note(101, "Buy launch", "I didn't cook for launch, so plz get some food on your way !", "#2F12EF".toColorInt()))
-        }catch (_: Throwable){}
-
+       */
 
 
         setContent {

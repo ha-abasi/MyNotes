@@ -26,9 +26,9 @@ fun NoteListItem(note: Note){
             border = BorderStroke(1.dp, color = Color.Black)
         ) {
             Column(modifier = Modifier.padding(10.dp)){
-                Text("${note.title}", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text("${note.title}", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.Black)
                 Spacer(modifier = Modifier.height(6.dp))
-                Text("${note.description}", fontSize = 13.sp, fontWeight = FontWeight.Normal)
+                Text("${note.description}", fontSize = 13.sp, fontWeight = FontWeight.Normal, color = Color.Black)
             }
         }
     }
