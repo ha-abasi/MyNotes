@@ -6,6 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +24,7 @@ import ir.hamedabasi.android.kotlin.compose.mon_notey.db.NoteViewModel
 import ir.hamedabasi.android.kotlin.compose.mon_notey.db.NoteViewModelFactory
 import ir.hamedabasi.android.kotlin.compose.mon_notey.db.entities.Note
 import ir.hamedabasi.android.kotlin.compose.mon_notey.db.repositories.NotesRepository
+import ir.hamedabasi.android.kotlin.compose.mon_notey.screens.EditNote
 import ir.hamedabasi.android.kotlin.compose.mon_notey.screens.NoteList
 import ir.hamedabasi.android.kotlin.compose.mon_notey.ui.theme.MonNoteyTheme
 
@@ -51,7 +55,17 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MonNoteyTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    floatingActionButton = {
+                        FloatingActionButton(onClick = {
+                            vm.setDisplayEditDialog(true)
+
+                        }) {
+                            Text("+")
+                        }
+                    }
+                ) { innerPadding ->
 
                     // observeAsState required -> implementation(libs.androidx.runtime.livedata)
                     //
@@ -60,7 +74,7 @@ class MainActivity : ComponentActivity() {
                     //
                     val notes by vm.allNotes.observeAsState(emptyList())
 
-                    NoteList(Modifier.padding(innerPadding), notes)
+                    NoteList(vm, Modifier.padding(innerPadding), notes)
                 }
             }
         }

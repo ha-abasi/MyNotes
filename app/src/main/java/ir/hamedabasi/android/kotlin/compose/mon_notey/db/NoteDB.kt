@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import ir.hamedabasi.android.kotlin.compose.mon_notey.db.entities.Note
 
 
-@Database([Note::class], version = 1)
+@Database([Note::class], version = 2)
 abstract class NoteDB : RoomDatabase() {
 
     abstract val noteDao : NoteDao
@@ -26,7 +26,9 @@ abstract class NoteDB : RoomDatabase() {
                         context = context,
                         klass = NoteDB::class.java,
                         name = "dbNote"
-                    ).build()
+                    )
+                        .fallbackToDestructiveMigration()
+                        .build()
                 }
                 return instance
             }

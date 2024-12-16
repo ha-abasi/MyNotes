@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -21,6 +22,7 @@ import ir.hamedabasi.android.kotlin.compose.mon_notey.db.entities.Note
 fun NoteListItem(note: Note){
     Row(modifier = Modifier.padding(5.dp)){
         Card(
+            modifier = Modifier.fillMaxWidth(),
             elevation = CardDefaults.cardElevation(12.dp),
             colors = CardDefaults.cardColors(contentColor = Color(note.color)),
             border = BorderStroke(1.dp, color = Color.Black)
