@@ -22,11 +22,12 @@ import androidx.compose.ui.unit.sp
 import ir.hamedabasi.android.kotlin.compose.mon_notey.db.entities.Note
 
 @Composable
-fun NoteList(noteList: List<Note>){
+fun NoteList(modifier: Modifier, noteList: List<Note>){
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(2),
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp)
+        modifier = modifier.fillMaxSize(),
+        contentPadding = PaddingValues(16.dp),
+        verticalItemSpacing = 10.dp,
     ) {
         items(noteList){
             note -> NoteListItem(note)
