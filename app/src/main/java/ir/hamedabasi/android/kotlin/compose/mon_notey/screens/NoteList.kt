@@ -32,7 +32,7 @@ fun NoteList(viewModel: NoteViewModel, modifier: Modifier, noteList: List<Note>)
             verticalItemSpacing = 10.dp,
         ) {
             items(noteList){
-                    note -> NoteListItem(note)
+                    note -> NoteListItem(note, viewModel)
             }
         }
         EditNote(viewModel)

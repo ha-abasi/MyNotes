@@ -14,6 +14,9 @@ import ir.hamedabasi.android.kotlin.compose.mon_notey.db.entities.Note
 class NotesRepository(private val noteDao: NoteDao) {
     val allNotes : LiveData<List<Note>> = noteDao.getAllNotes()
 
+    suspend fun remove(note: Note){
+        return noteDao.remove(note)
+    }
     suspend fun insert(note: Note){
         return noteDao.insert(note)
     }
