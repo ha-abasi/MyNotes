@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -39,16 +40,19 @@ fun NoteListItem(note: Note, model: NoteViewModel){
                 colors = CardDefaults.cardColors(contentColor = Color(note.color)),
                 border = BorderStroke(1.dp, color = Color.Black)
             ) {
-                Column(modifier = Modifier.padding(10.dp, 40.dp, 10.dp, 10.dp)){
+                Column(modifier = Modifier.padding(10.dp, 60.dp, 10.dp, 10.dp)){
                     Text("${note.title}", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.Black)
                     Spacer(modifier = Modifier.height(6.dp))
                     Text("${note.description}", fontSize = 13.sp, fontWeight = FontWeight.Normal, color = Color.Black)
                 }
             }
             Box(modifier = Modifier.align(Alignment.TopEnd)){
-                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween){
-                    EditButton(note, model)
-                    DeleteButton(note, model)
+                Column {
+                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween){
+                        EditButton(note, model)
+                        DeleteButton(note, model)
+                    }
+                    HorizontalDivider()
                 }
             }
 
