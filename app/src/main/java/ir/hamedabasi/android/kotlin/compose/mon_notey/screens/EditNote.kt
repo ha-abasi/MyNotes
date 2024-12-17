@@ -36,6 +36,7 @@ import ir.hamedabasi.android.kotlin.compose.mon_notey.db.entities.Note
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditNote(viewModel: NoteViewModel){
+
     var title by remember {
         mutableStateOf("")
     }
@@ -49,11 +50,40 @@ fun EditNote(viewModel: NoteViewModel){
     }
 
 
-
     // get state of dialog visibility :
     val enabledStateFlow by viewModel.displayEditDialog.collectAsState()
 
+    // get state of edited note :
+    val editedNote by viewModel.editedNote.collectAsState()
+    if (editedNote != null){
+        title = editedNote!!.title
+        description = editedNote!!.description
+        selectedColor = Color(editedNote!!.color)
+    }
 
+
+    fun onSave(){
+        if(editedNote == null){
+            // It's a new Item
+            val newNote = Note(
+                id = 0,
+                title = title,
+                description = description,
+                color = selectedColor.toArgb() // convert Color object to integer represent (Alpha and RGB values)
+            )
+            viewModel.insert(newNote)
+
+        }else{
+            // It's an edit
+            editedNote!!.title = title
+            editedNote!!.description = description
+            editedNote!!.color = selectedColor.toArgb()
+
+
+            viewModel.update(editedNote!!)
+        }
+        viewModel.setDisplayEditDialog(false)
+    }
 
 
     if (enabledStateFlow){
@@ -80,18 +110,7 @@ fun EditNote(viewModel: NoteViewModel){
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                Button(onClick = {
-                    val note = Note(
-                        id = 0,
-                        title = title,
-                        description = description,
-                        color = selectedColor.toArgb() // convert Color object to integer represent (Alpha and RGB values)
-                    )
-
-                    viewModel.insert(note)
-
-                    viewModel.setDisplayEditDialog(false)
-                }) {
+                Button(onClick = {onSave()}) {
                     Text("OK")
                 }
             }

@@ -26,7 +26,14 @@ class NoteViewModel(private val repository: NotesRepository) : ViewModel() {
         _displayEditDialog.value = b
     }
 
-
+    /*
+        Defining a boolean StateFlow :
+     */
+    private val _editedNote = MutableStateFlow<Note?>(null)
+    val editedNote : StateFlow<Note?> = _editedNote.asStateFlow()
+    fun setEditedNote(b: Note?){
+        _editedNote.value = b
+    }
 
 
 
@@ -49,6 +56,13 @@ class NoteViewModel(private val repository: NotesRepository) : ViewModel() {
         }
     }
 
+    fun update(note: Note){
+        viewModelScope.launch {
+            repository.update(note)
+
+            setEditedNote(null)
+        }
+    }
     fun remove(note: Note){
         viewModelScope.launch {
             repository.remove(note)

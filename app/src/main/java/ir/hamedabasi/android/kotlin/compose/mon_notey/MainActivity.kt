@@ -11,21 +11,14 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.graphics.toColorInt
 import androidx.lifecycle.ViewModelProvider
 import ir.hamedabasi.android.kotlin.compose.mon_notey.db.NoteDB
 import ir.hamedabasi.android.kotlin.compose.mon_notey.db.NoteViewModel
 import ir.hamedabasi.android.kotlin.compose.mon_notey.db.NoteViewModelFactory
-import ir.hamedabasi.android.kotlin.compose.mon_notey.db.entities.Note
 import ir.hamedabasi.android.kotlin.compose.mon_notey.db.repositories.NotesRepository
-import ir.hamedabasi.android.kotlin.compose.mon_notey.screens.EditNote
 import ir.hamedabasi.android.kotlin.compose.mon_notey.screens.NoteList
 import ir.hamedabasi.android.kotlin.compose.mon_notey.ui.theme.MonNoteyTheme
 
