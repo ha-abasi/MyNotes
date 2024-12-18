@@ -1,12 +1,19 @@
 package ir.hamedabasi.android.kotlin.compose.mon_notey.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BasicAlertDialog
@@ -25,6 +32,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
@@ -110,6 +118,15 @@ fun EditNote(viewModel: NoteViewModel){
 
                 Spacer(modifier = Modifier.height(10.dp))
 
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                ColorSelector(selectedColor){ color ->
+                    selectedColor = color
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
                 Button(onClick = {onSave()}) {
                     Text("OK")
                 }
@@ -118,4 +135,43 @@ fun EditNote(viewModel: NoteViewModel){
         }
     }
 
+}
+
+@Composable
+fun ColorSelector(selectecColor: Color, onColorSelect: (color: Color) -> Unit){
+    val colors = listOf(
+        Color("#88ee12".toColorInt()),
+        Color("#EE22EF".toColorInt()),
+        Color("#9819EF".toColorInt()),
+        Color("#CC8811".toColorInt()),
+        Color("#ED77EE".toColorInt()),
+        Color("#1DEEFF".toColorInt()),
+        Color("#1173EF".toColorInt()),
+        Color("#ED8199".toColorInt()),
+        Color("#EFEF33".toColorInt()),
+        Color("#89E17E".toColorInt()),
+
+    )
+
+
+    LazyRow {
+        items(colors){ color ->
+            Box(modifier = Modifier
+                .size(40.dp)
+                .padding(4.dp)
+                .clip(CircleShape)
+                .background(color)
+                .border(
+                    width = if (color == selectecColor) 4.dp else 1.dp,
+                    color = if (color == selectecColor) Color.Black else Color.Transparent,
+                    shape = CircleShape
+                )
+                .clickable {
+                    onColorSelect(color)
+                }
+            ){
+
+            }
+        }
+    }
 }

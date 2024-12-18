@@ -37,7 +37,7 @@ fun NoteListItem(note: Note, model: NoteViewModel){
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 elevation = CardDefaults.cardElevation(12.dp),
-                colors = CardDefaults.cardColors(contentColor = Color(note.color)),
+                colors = CardDefaults.cardColors(containerColor = Color(note.color)),
                 border = BorderStroke(1.dp, color = Color.Black)
             ) {
                 Column(modifier = Modifier.padding(10.dp, 60.dp, 10.dp, 10.dp)){
