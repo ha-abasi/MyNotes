@@ -22,8 +22,8 @@ class NoteViewModel(private val repository: NotesRepository) : ViewModel() {
      */
     private val _displayEditDialog = MutableStateFlow(false)
     val displayEditDialog : StateFlow<Boolean> = _displayEditDialog.asStateFlow()
-    fun setDisplayEditDialog(b: Boolean){
-        _displayEditDialog.value = b
+    fun setDisplayEditDialog(showEditDLG: Boolean){
+        _displayEditDialog.value = showEditDLG
     }
 
     /*
@@ -31,8 +31,8 @@ class NoteViewModel(private val repository: NotesRepository) : ViewModel() {
      */
     private val _editedNote = MutableStateFlow<Note?>(null)
     val editedNote : StateFlow<Note?> = _editedNote.asStateFlow()
-    fun setEditedNote(b: Note?){
-        _editedNote.value = b
+    fun setEditedNote(note: Note?){
+        _editedNote.value = note
     }
 
 
